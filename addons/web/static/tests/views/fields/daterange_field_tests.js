@@ -6,6 +6,7 @@ import {
     clickSave,
     editInput,
     getFixture,
+    makeDeferred,
     nextTick,
     patchDate,
     patchTimeZone,
@@ -1288,4 +1289,68 @@ QUnit.module("Fields", (hooks) => {
             "date field should be displayed as invalid"
         );
     });
+
+    QUnit.test("date values are selected eagerly and do not flicker", async (assert) => {
+        const getValues = () =>
+            [...target.querySelectorAll(".o_field_datetime input")].map((input) => input.value);
+
+        serverData.models.partner.onchanges = {
+            datetime: () => {},
+        };
+
+        const def = makeDeferred();
+        await makeView({
+            type: "form",
+            resModel: "partner",
+            serverData,
+            arch: `
+                <form>
+                    <field name="datetime" options="{'end_date_field': 'datetime_end'}"/>
+                </form>`,
+            resId: 1,
+            async mockRPC(_route, { method }) {
+                if (method === "onchange") {
+                    await def;
+                    assert.step(method);
+                }
+            },
+        });
+
+        await click(target, ".o_field_datetime input");
+        await click(getPickerCell("19"));
+        await click(target, ".o_add_date");
+        await click($(".btn:contains(Apply)")[0]);
+
+        assert.deepEqual(getValues(), ["02/19/2017 15:30:00", "02/19/2017 15:30:00"]);
+        assert.verifySteps([]);
+
+        def.resolve();
+        await nextTick();
+
+        assert.deepEqual(getValues(), ["02/19/2017 15:30:00", "02/19/2017 15:30:00"]);
+        assert.verifySteps(["onchange"]);
+    });
+
+    QUnit.test(
+        "update the selected input date after removing the existing date",
+        async (assert) => {
+            serverData.models.partner.fields.date_end = { string: "Date End", type: "date" };
+            serverData.models.partner.records[0].date_end = "2017-02-08";
+            await makeView({
+                type: "form",
+                resModel: "partner",
+                resId: 1,
+                serverData,
+                arch: `
+                        <form>
+                        <field name="date" widget="daterange" options="{'start_date_field': 'date_end'}" required="1" />
+                        </form>`,
+            });
+            await click(target, "input[data-field=date]");
+            await editInput(target, "input[data-field=date]", null);
+            await click(getPickerCell("12").at(0));
+
+            assert.strictEqual(target.querySelector("input[data-field=date]").value, "02/12/2017");
+        }
+    );
 });

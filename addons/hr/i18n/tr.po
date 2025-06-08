@@ -22,18 +22,19 @@
 # Martin Trigaux, 2023
 # Murat Kaplan <muratk@projetgrup.com>, 2023
 # Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2023
-# Levent Karakaş <levent@mektup.at>, 2023
 # ismail eski <ismaileski@gmail.com>, 2024
-# Ayhan Kızıltan, 2024
 # Ediz Duman <neps1192@gmail.com>, 2024
+# Levent Karakaş <levent@mektup.at>, 2024
+# Wil Odoo, 2025
+# Deniz Guvener_Odoo <degu@odoo.com>, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
+"POT-Creation-Date: 2025-02-10 10:33+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Ediz Duman <neps1192@gmail.com>, 2024\n"
+"Last-Translator: Deniz Guvener_Odoo <degu@odoo.com>, 2025\n"
 "Language-Team: Turkish (https://app.transifex.com/odoo/teams/41243/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,11 +99,6 @@ msgid "12 days / year, including <br>6 of your choice."
 msgstr "6'sı sizin seçeceğiniz dahil<br>yılda 12 gün / yıl."
 
 #. module: hr
-#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
-msgid "12345678901"
-msgstr ""
-
-#. module: hr
 #: model_terms:hr.job,job_details:hr.job_ceo
 #: model_terms:hr.job,job_details:hr.job_consultant
 #: model_terms:hr.job,job_details:hr.job_cto
@@ -144,13 +140,13 @@ msgstr "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Company\" title=
 #: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
 msgid "<i class=\"fa fa-fw me-2 fa-envelope text-primary\" title=\"Email\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-fw me-2 fa-envelope text-primary\" title=\"Email\"/>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
 msgid "<i class=\"fa fa-fw me-2 fa-phone text-primary\" title=\"Phone\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-fw me-2 fa-phone text-primary\" title=\"Phone\"/>"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -272,7 +268,7 @@ msgstr "<span>Km</span>"
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
 msgid "<span>new Employees</span>"
-msgstr ""
+msgstr "<span>yeni Çalışanlar</span>"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -572,6 +568,11 @@ msgid "Available"
 msgstr "Uygun"
 
 #. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.mail_activity_plan_view_form
+msgid "Available for all Departments"
+msgstr ""
+
+#. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__avatar_1920
 #: model:ir.model.fields,field_description:hr.field_hr_employee_public__avatar_1920
 msgid "Avatar"
@@ -632,6 +633,11 @@ msgstr "Rozet ID"
 #: model:ir.model.fields,field_description:hr.field_hr_employee__bank_account_id
 msgid "Bank Account Number"
 msgstr "Banka Hesap No"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Banka Hesapları"
 
 #. module: hr
 #: model:ir.model,name:hr.model_base
@@ -1004,6 +1010,8 @@ msgid ""
 msgstr ""
 
 #. module: hr
+#. odoo-javascript
+#: code:addons/hr/static/src/components/avatar_card/avatar_card_popover_patch.xml:0
 #: model:ir.model,name:hr.model_hr_department
 #: model:ir.model.fields,field_description:hr.field_hr_employee__department_id
 #: model:ir.model.fields,field_description:hr.field_hr_employee_base__department_id
@@ -1016,6 +1024,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr.view_department_filter
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
 #: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+#, python-format
 msgid "Department"
 msgstr "Departman"
 
@@ -1464,7 +1473,7 @@ msgstr "Meyve, kahve ve <br> atıştırmalıklar sağlanır."
 #. module: hr
 #: model:hr.contract.type,name:hr.contract_type_full_time
 msgid "Full-Time"
-msgstr ""
+msgstr "Tam Zamanlı"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
@@ -1897,6 +1906,14 @@ msgid ""
 "Lorem Ipsum passages, and more recently with desktop publishing software "
 "like Aldus PageMaker including versions of Lorem Ipsum."
 msgstr ""
+"Lorem Ipsum, baskı ve dizgi endüstrisinin kukla metnidir. Lorem Ipsum, "
+"1500'lü yıllarda bilinmeyen bir matbaacının bir dizgi kalıbını alıp bir "
+"dizgi örneği kitabı yapmak için karıştırmasından bu yana sektörün standart "
+"sahte metni olmuştur. Sadece beş yüzyıl değil, aynı zamanda elektronik "
+"dizgiye geçişte de aslı bozulmadan hayatta kalmıştır. 1960'larda Lorem Ipsum"
+" pasajları içeren Letraset sayfalarının piyasaya sürülmesiyle ve daha yakın "
+"zamanda Lorem Ipsum sürümlerini içeren Aldus PageMaker gibi masaüstü "
+"yayıncılık yazılımlarıyla popüler hale gelmiştir."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__message_main_attachment_id
@@ -1931,11 +1948,6 @@ msgstr "Yönetici"
 #, python-format
 msgid "Manager of employee %s is not set."
 msgstr "%s personelinin yöneticisi ayarlanmamış."
-
-#. module: hr
-#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
-msgid "Marc Demo"
-msgstr "Marc Demo"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__marital
@@ -2230,7 +2242,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_work_location__location_type__office
 msgid "Office"
-msgstr ""
+msgstr "Ofis"
 
 #. module: hr
 #: model:res.groups,name:hr.group_hr_user
@@ -2771,7 +2783,7 @@ msgstr "Okul"
 #. module: hr
 #: model:hr.contract.type,name:hr.contract_type_seasonal
 msgid "Seasonal"
-msgstr ""
+msgstr "Mevsimlik"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee__coach_id
@@ -2841,8 +2853,10 @@ msgid "Social Security Number"
 msgstr "Sosyal Güvenlik Numarası"
 
 #. module: hr
-#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
-msgid "Software Developer"
+#. odoo-python
+#: code:addons/hr/models/hr_employee_base.py:0
+#, python-format
+msgid "Some employee already have a work contact"
 msgstr ""
 
 #. module: hr
@@ -3202,7 +3216,7 @@ msgstr "Okunmamış Mesajlar"
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.open_view_categ_form
 msgid "Use tags to categorize your Employees."
-msgstr ""
+msgstr "Çalışanlarınızı kategorilere ayırmak için etiketleri kullanın."
 
 #. module: hr
 #: model:ir.model,name:hr.model_res_users
@@ -3222,7 +3236,7 @@ msgstr "Kullanıcının İş ortağı"
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_job_view_kanban
 msgid "Vacancies:"
-msgstr ""
+msgstr "Açık Pozisyonlar:"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_company__hr_presence_control_ip_list
@@ -3490,6 +3504,18 @@ msgid ""
 "contributing to the set up of a new politic,\n"
 "being involved into satisfaction surveys in order to have a better knowledge of how the support given is seen by the customers."
 msgstr ""
+"Odoo'nun yeni bir sürümünün piyasaya sürülmesinden sonra eğitim araçlarımızın ve satış öncesi araçlarımızın güncellenmesine katılıyorsunuz. Aslında, yazılımın her yeni sürümü işlevsellik, ergonomi ve yapılandırma açısından önemli iyileştirmeler getirir.\n"
+"Mevcut araçlara (kitaplar, sınıf destekleri, Odoo sunum slaytları, ticari araçlar) aşina olmanız, yazılımın yeni sürümüne \n"
+"uygun hale getirmek için bu araçların güncellenmesine katkıda bulunmanız ve elbette yazılımın\n"
+"yeni alanlarını kapsayacak şekilde iyileştirmeler önermeniz gerekecektir.\n"
+"Kurulum Desteği departmanına katılıyorsunuz. Bu 3 kişilik ekip, yazılımın kurulumunda Odoo'nun müşterileriyle birlikte hareket eder. Göreviniz, yazılımın \n"
+"farklı işlevlerini göstermek için web seminerlerini canlandırmak olacaktır.\n"
+"Müşterileri desteklemek ve \n"
+"sorularına yanıt vermek.\n"
+"Destek yöneticisinin yeni destek hizmetleri kurmasına şu şekilde yardımcı olursunuz: \n"
+"yeni vakaların ele alınmasına dahil olmak,\n"
+"yeni bir politikanın oluşturulmasına katkıda bulunmak,\n"
+"verilen desteğin müşteriler tarafından nasıl görüldüğüne dair daha iyi bilgi sahibi olmak için memnuniyet anketlerine dahil olmak."
 
 #. module: hr
 #. odoo-python
@@ -3505,6 +3531,9 @@ msgid ""
 "\n"
 "The job is located in Grand-Rosière (1367), Belgium (between Louvain-La-Neuve and Namur)."
 msgstr ""
+"Partnerlerimize ve müşterilerimize sağladığımız danışmanlık hizmetlerinde yer alacaksınız: tasarım, analiz, geliştirme, test, proje yönetimi, destek/koçluk. Otonom olarak çalışacak ve bazı projeler için küçük dağınık haldeki geliştirme ekiplerini koordine edecek ve denetleyeceksiniz. İsteğe bağlı olarak partnerlere ve müşterilere Odoo eğitimleri vereceksiniz (oturum başına 8-10 kişi). Profesyonel Hizmetler Müdürünün altında çalışacak ve tüm geliştiriciler ve danışmanlarla iş birliği içinde olacaksınız.\n"
+"\n"
+"İş yerinin konumu: Grand-Rosière (1367), Belçika (Louvain-La-Neuve ile Namur arasında)."
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
@@ -3544,4 +3573,4 @@ msgstr "personellerle sınırlı"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__work_permit_name
 msgid "work_permit_name"
-msgstr ""
+msgstr "çalışma_izni_adı"

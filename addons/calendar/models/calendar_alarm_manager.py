@@ -2,12 +2,13 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import logging
-from datetime import timedelta, datetime
+from datetime import timedelta
 from dateutil.relativedelta import relativedelta
-from pytz import UTC
 
 from odoo import api, fields, models
 from odoo.tools import plaintext2html
+from odoo.tools.sql import SQL
+
 
 _logger = logging.getLogger(__name__)
 
@@ -41,7 +42,7 @@ class AlarmManager(models.AbstractModel):
                         END as last_alarm,
                         cal.start as first_event_date,
                         CASE
-                            WHEN cal.recurrency THEN rrule.until
+                            WHEN cal.recurrency AND rrule.end_type = 'end_date' THEN rrule.until
                             ELSE cal.stop
                         END as last_event_date,
                         calcul_delta.min_delta,
@@ -142,6 +143,14 @@ class AlarmManager(models.AbstractModel):
             })
         return result
 
+    @api.model
+    def _get_notify_alert_extra_conditions(self):
+        """
+        To be overriden on inherited modules
+        adding extra conditions to extract only the unsynced events
+        """
+        return SQL("")
+
     def _get_events_by_alarm_to_notify(self, alarm_type):
         """
         Get the events with an alarm of the given type between the cron
@@ -153,20 +162,26 @@ class AlarmManager(models.AbstractModel):
         already.
         """
         lastcall = self.env.context.get('lastcall', False) or fields.date.today() - relativedelta(weeks=1)
-        now = datetime.now(tz=UTC)
-        self.env.cr.execute('''
-            SELECT "alarm"."id", "event"."id"
-              FROM "calendar_event" AS "event"
-              JOIN "calendar_alarm_calendar_event_rel" AS "event_alarm_rel"
-                ON "event"."id" = "event_alarm_rel"."calendar_event_id"
-              JOIN "calendar_alarm" AS "alarm"
-                ON "event_alarm_rel"."calendar_alarm_id" = "alarm"."id"
-             WHERE (
-                   "alarm"."alarm_type" = %s
-               AND "event"."active"
-               AND "event"."start" - CAST("alarm"."duration" || ' ' || "alarm"."interval" AS Interval) >= %s
-               AND "event"."start" - CAST("alarm"."duration" || ' ' || "alarm"."interval" AS Interval) < %s
-             )''', [alarm_type, lastcall, now])
+        extra_conditions = self._get_notify_alert_extra_conditions()
+        now = fields.Datetime.now()
+        self.env.cr.execute(SQL("""
+            SELECT alarm.id, event.id
+            FROM calendar_event AS event
+            JOIN calendar_alarm_calendar_event_rel AS event_alarm_rel
+                ON event.id = event_alarm_rel.calendar_event_id
+            JOIN calendar_alarm AS alarm
+                ON event_alarm_rel.calendar_alarm_id = alarm.id
+            WHERE alarm.alarm_type = %s
+            AND event.active
+            AND event.start - CAST(alarm.duration || ' ' || alarm.interval AS Interval) >= %s
+            AND event.start - CAST(alarm.duration || ' ' || alarm.interval AS Interval) < %s
+            %s
+        """,
+            alarm_type,
+            lastcall,
+            now,
+            extra_conditions,
+        ))
 
         events_by_alarm = {}
         for alarm_id, event_id in self.env.cr.fetchall():
@@ -182,7 +197,8 @@ class AlarmManager(models.AbstractModel):
 
         event_ids = list(set(event_id for event_ids in events_by_alarm.values() for event_id in event_ids))
         events = self.env['calendar.event'].browse(event_ids)
-        attendees = events.attendee_ids.filtered(lambda a: a.state != 'declined')
+        now = fields.Datetime.now()
+        attendees = events.filtered(lambda e: e.stop > now).attendee_ids.filtered(lambda a: a.state != 'declined')
         alarms = self.env['calendar.alarm'].browse(events_by_alarm.keys())
         for alarm in alarms:
             alarm_attendees = attendees.filtered(lambda attendee: attendee.event_id.id in events_by_alarm[alarm.id])
@@ -246,7 +262,10 @@ class AlarmManager(models.AbstractModel):
     def _notify_next_alarm(self, partner_ids):
         """ Sends through the bus the next alarm of given partners """
         notifications = []
-        users = self.env['res.users'].search([('partner_id', 'in', tuple(partner_ids))])
+        users = self.env['res.users'].search([
+            ('partner_id', 'in', tuple(partner_ids)),
+            ('groups_id', 'in', self.env.ref('base.group_user').ids),
+        ])
         for user in users:
             notif = self.with_user(user).with_context(allowed_company_ids=user.company_ids.ids).get_next_notif()
             notifications.append([user.partner_id, 'calendar.alarm', notif])

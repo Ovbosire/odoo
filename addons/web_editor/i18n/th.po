@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Khwunchai Jaengsawang <khwunchai.j@ku.th>, 2023
-# Wil Odoo, 2023
-# Rasareeyar Lappiam, 2024
+# Rasareeyar Lappiam, 2025
+# Wil Odoo, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 10:46+0000\n"
+"POT-Creation-Date: 2025-05-09 20:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Rasareeyar Lappiam, 2024\n"
+"Last-Translator: Wil Odoo, 2025\n"
 "Language-Team: Thai (https://app.transifex.com/odoo/teams/41243/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -415,7 +415,7 @@ msgstr "แท็ก Alt"
 
 #. module: web_editor
 #. odoo-javascript
-#: code:addons/web_editor/static/src/components/media_dialog/file_selector.js:0
+#: code:addons/web_editor/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid "An error occurred while fetching the entered URL."
 msgstr "เกิดข้อผิดพลาดขณะดึงข้อมูล URL ที่ป้อน"
@@ -881,10 +881,13 @@ msgstr "ไม่สามารถติดตั้งโมดูล %s ไ�
 
 #. module: web_editor
 #. odoo-javascript
-#. module: web_editor
 #: code:addons/web_editor/static/src/components/upload_progress_toast/upload_service.js:0
-#: model_terms:ir.ui.view,arch_db:web_editor.snippet_options_background_options
 #, python-format
+msgid "Could not load the file \"%s\"."
+msgstr "ไม่สามารถโหลดไฟล์ \"%s\" ได้"
+
+#. module: web_editor
+#: model_terms:ir.ui.view,arch_db:web_editor.snippet_options_background_options
 msgid "Cover"
 msgstr "หน้าปก"
 
@@ -1098,6 +1101,13 @@ msgstr "คุณต้องการติดตั้งแอป %s หร�
 
 #. module: web_editor
 #. odoo-javascript
+#: code:addons/web_editor/static/src/components/media_dialog/media_dialog.js:0
+#, python-format
+msgid "Documents"
+msgstr "เอกสาร"
+
+#. module: web_editor
+#. odoo-javascript
 #: code:addons/web_editor/static/src/xml/wysiwyg.xml:0
 #, python-format
 msgid "Dotted"
@@ -1212,7 +1222,9 @@ msgstr "ใบเสนอราคาที่ว่างเปล่า"
 
 #. module: web_editor
 #. odoo-javascript
-#: code:addons/web_editor/static/src/components/media_dialog/file_selector.js:0
+#: code:addons/web_editor/static/src/components/media_dialog/image_selector.js:0
+#: code:addons/web_editor/static/src/components/media_dialog/image_selector.js:0
+#: code:addons/web_editor/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid "Error"
 msgstr "ผิดพลาด"
@@ -1572,13 +1584,6 @@ msgstr "ซ่อนโลโก้ Dailymotion"
 #. odoo-javascript
 #: code:addons/web_editor/static/src/components/media_dialog/video_selector.js:0
 #, python-format
-msgid "Hide Youtube logo"
-msgstr "ซ่อนโลโก้ Youtube"
-
-#. module: web_editor
-#. odoo-javascript
-#: code:addons/web_editor/static/src/components/media_dialog/video_selector.js:0
-#, python-format
 msgid "Hide fullscreen button"
 msgstr "ปุ่มซ่อนเต็มหน้าจอ"
 
@@ -1681,6 +1686,13 @@ msgstr "ขนาดไอคอน 5x"
 
 #. module: web_editor
 #. odoo-javascript
+#: code:addons/web_editor/static/src/components/media_dialog/media_dialog.js:0
+#, python-format
+msgid "Icons"
+msgstr "ไอคอน"
+
+#. module: web_editor
+#. odoo-javascript
 #: code:addons/web_editor/static/src/js/wysiwyg/wysiwyg.js:0
 #, python-format
 msgid ""
@@ -1734,6 +1746,13 @@ msgstr "ความกว้างรูปภาพ"
 #, python-format
 msgid "Image padding"
 msgstr "แพดดิ้งรูปภาพ"
+
+#. module: web_editor
+#. odoo-javascript
+#: code:addons/web_editor/static/src/components/media_dialog/media_dialog.js:0
+#, python-format
+msgid "Images"
+msgstr "รูปภาพ"
 
 #. module: web_editor
 #: model_terms:ir.ui.view,arch_db:web_editor.snippet_options_image_optimization_widgets
@@ -1850,6 +1869,7 @@ msgstr "แทรกด้านล่าง"
 #. module: web_editor
 #. odoo-javascript
 #: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
+#: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
 #, python-format
 msgid "Insert left"
 msgstr "แทรกด้านซ้าย"
@@ -1877,6 +1897,7 @@ msgstr "แทรกเนื้อหาส่วนบุคคล"
 
 #. module: web_editor
 #. odoo-javascript
+#: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
 #: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
 #, python-format
 msgid "Insert right"
@@ -2119,12 +2140,14 @@ msgstr "เลื่อนลง"
 #. module: web_editor
 #. odoo-javascript
 #: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
+#: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
 #, python-format
 msgid "Move left"
 msgstr "เลื่อนไปทางซ้าย"
 
 #. module: web_editor
 #. odoo-javascript
+#: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
 #: code:addons/web_editor/static/src/js/editor/odoo-editor/src/OdooEditor.js:0
 #, python-format
 msgid "Move right"
@@ -2213,13 +2236,6 @@ msgstr "ไม่มีบันทึกเพิ่มเติม"
 #, python-format
 msgid "No pictograms found."
 msgstr "ไม่พบรูปภาพ"
-
-#. module: web_editor
-#. odoo-javascript
-#: code:addons/web_editor/static/src/js/backend/html_field.js:0
-#, python-format
-msgid "No videos"
-msgstr "ไม่มีวิดีโอ"
 
 #. module: web_editor
 #. odoo-javascript
@@ -3496,6 +3512,13 @@ msgstr "โค้ดวิดีโอ"
 
 #. module: web_editor
 #. odoo-javascript
+#: code:addons/web_editor/static/src/components/media_dialog/media_dialog.js:0
+#, python-format
+msgid "Videos"
+msgstr "วิดีโอ"
+
+#. module: web_editor
+#. odoo-javascript
 #: code:addons/web_editor/static/src/components/media_dialog/video_selector.js:0
 #, python-format
 msgid "Videos are muted when autoplay is enabled"
@@ -3604,6 +3627,25 @@ msgstr "Xpro"
 #, python-format
 msgid "Yes"
 msgstr "ใช่"
+
+#. module: web_editor
+#. odoo-javascript
+#: code:addons/web_editor/static/src/components/media_dialog/image_selector.js:0
+#: code:addons/web_editor/static/src/components/media_dialog/image_selector.js:0
+#, python-format
+msgid ""
+"You can not replace a field by this image. If you want to use this image, "
+"first save it on your computer and then upload it here."
+msgstr ""
+"คุณไม่สามารถแทนที่ฟิลด์ด้วยภาพนี้ได้ หากคุณต้องการใช้ภาพนี้ "
+"โปรดบันทึกลงในคอมพิวเตอร์ของคุณก่อน จากนั้นอัปโหลดที่นี่"
+
+#. module: web_editor
+#. odoo-javascript
+#: code:addons/web_editor/static/src/components/media_dialog/image_selector.xml:0
+#, python-format
+msgid "You can not use this image in a field"
+msgstr "คุณไม่สามารถใช้รูปภาพนี้ในฟิลด์ได้"
 
 #. module: web_editor
 #. odoo-javascript
